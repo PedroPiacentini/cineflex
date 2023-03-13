@@ -10,6 +10,8 @@ export default function Seat({ seat }) {
             onClick={() => {
                 if (seat.isAvailable) {
                     setSelected(!selected);
+                } else {
+                    alert("Esse assento não está disponível");
                 }
             }}
         >
