@@ -7,15 +7,18 @@ import SessionsPage from "./pages/SessionsPage/SessionsPage"
 import SuccessPage from "./pages/SuccessPage/SuccessPage"
 
 export default function App() {
-    const [idFilme, setIdFilme] = useState(null)
+
+    const [idFilme, setIdFilme] = useState(null);
+    const [idSessao, setIdSessao] = useState(null);
+
     return (
         <BrowserRouter>
             <NavContainer>CINEFLEX</NavContainer>
             <Link to="/" />
             <Routes>
                 <Route path="/" element={<HomePage setIdFilme={setIdFilme} />} />
-                <Route path={`/sessoes/:${idFilme}`} element={<SessionsPage idFilme={idFilme} />} />
-                <Route path="/assentos/" element={<SeatsPage />} />
+                <Route path={`/sessoes/:${idFilme}`} element={<SessionsPage idFilme={idFilme} setIdSessao={setIdSessao} />} />
+                <Route path={`/assentos/:${idSessao}`} element={<SeatsPage />} />
                 <Route path="/sucesso" element={<SuccessPage />} />
             </Routes>
         </BrowserRouter>

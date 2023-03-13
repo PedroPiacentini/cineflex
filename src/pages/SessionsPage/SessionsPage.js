@@ -1,8 +1,9 @@
-import styled from "styled-components"
+import styled from "styled-components";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-export default function SessionsPage({ idFilme }) {
+export default function SessionsPage({ idFilme, setIdSessao }) {
     const [movie, setMovie] = useState(null);
     const days = movie === null ? null : movie.days;
 
@@ -23,12 +24,14 @@ export default function SessionsPage({ idFilme }) {
                     movie === null ? <div>carregando</div> :
                         days.map(day => {
                             return (
-                                <SessionContainer>
+                                <SessionContainer key={day.id}>
                                     {day.weekday} - {day.date}
                                     <ButtonsContainer>
                                         {day.showtimes.map(button => {
                                             return (
-                                                <button>{button.name}</button>
+                                                <Link key={button.id} to={`/assentos/:${button.id}`}>
+                                                    <button onClick={() => setIdSessao(button.id)} >{button.name}</button>
+                                                </Link>
                                             )
                                         })}
                                     </ButtonsContainer>
