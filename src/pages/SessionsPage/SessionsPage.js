@@ -1,6 +1,17 @@
 import styled from "styled-components"
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-export default function SessionsPage() {
+export default function SessionsPage({ idFilme }) {
+    const [movie, setMovie] = useState(null);
+
+    useEffect(() => {
+        const request = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`);
+
+        request.then(response => {
+            setMovie(response.data);
+        })
+    }, []);
 
     return (
         <PageContainer>
