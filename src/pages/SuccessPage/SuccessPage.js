@@ -19,26 +19,26 @@ export default function SuccessPage({ idSessao, order }) {
         <PageContainer>
             <h1>Pedido feito <br /> com sucesso!</h1>
 
-            <TextContainer>
+            <TextContainer data-test="movie-info">
                 <strong><p>Filme e sessão</p></strong>
                 <p>{movie === null ? "carregando" : movie.title}</p>
                 {session !== null ? <p>{session.day.date} - {session.day.weekday}</p> : <div>carregando</div>}
             </TextContainer>
 
-            <TextContainer>
+            <TextContainer data-test="seats-info">
                 <strong><p>Ingressos</p></strong>
                 {order.ids.map(seatId => {
                     return <p key={seatId}>{session !== null ? "Assento " + (1 + seatId - session.seats[0].id) : "carregando"}</p>
                 })}
             </TextContainer>
 
-            <TextContainer>
+            <TextContainer data-test="client-info">
                 <strong><p>Comprador</p></strong>
                 <p>Nome: {order.name}</p>
                 <p>CPF: {order.cpf}</p>
             </TextContainer>
 
-            <Link to={"/"}><button>Voltar para Home</button></Link>
+            <Link to={"/"}><button data-test="go-home-btn">Voltar para Home</button></Link>
         </PageContainer>
     )
 }

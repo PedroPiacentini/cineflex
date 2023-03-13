@@ -50,13 +50,13 @@ export default function SeatsPage({ idSessao, setOrder }) {
 
             <FormContainer>
                 Nome do Comprador:
-                <input placeholder="Digite seu nome..." onChange={name => order.name = name.target.value} />
+                <input data-test="client-name" placeholder="Digite seu nome..." onChange={name => order.name = name.target.value} />
 
                 CPF do Comprador:
-                <input placeholder="Digite seu CPF..." onChange={cpf => order.cpf = cpf.target.value} />
+                <input data-test="client-cpf" placeholder="Digite seu CPF..." onChange={cpf => order.cpf = cpf.target.value} />
 
                 <Link to={"/sucesso"} >
-                    <button
+                    <button data-test="book-seat-btn"
                         onClick={() => {
                             if (order.ids.length === 0) return;
                             const request = axios.post(`https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many`, order);
@@ -70,7 +70,7 @@ export default function SeatsPage({ idSessao, setOrder }) {
 
             </FormContainer>
 
-            <FooterContainer>
+            <FooterContainer data-test="footer">
                 <div>
                     {movie !== null ? <img src={movie.posterURL} alt="poster" /> : "carregando"}
                 </div>

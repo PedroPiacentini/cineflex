@@ -6,6 +6,7 @@ export default function Seat({ seat, order }) {
 
     return (
         <SeatItem
+            data-test="seat"
             isAvailable={seat.isAvailable} selected={selected}
             onClick={() => {
                 if (seat.isAvailable) {

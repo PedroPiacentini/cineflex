@@ -24,13 +24,13 @@ export default function SessionsPage({ idFilme, setIdSessao }) {
                     movie === null ? <div>carregando</div> :
                         days.map(day => {
                             return (
-                                <SessionContainer key={day.id}>
+                                <SessionContainer data-test="movie-day" key={day.id}>
                                     {day.weekday} - {day.date}
                                     <ButtonsContainer>
                                         {day.showtimes.map(button => {
                                             return (
                                                 <Link key={button.id} to={`/assentos/:${button.id}`}>
-                                                    <button onClick={() => setIdSessao(button.id)} >{button.name}</button>
+                                                    <button data-test="showtime" onClick={() => setIdSessao(button.id)} >{button.name}</button>
                                                 </Link>
                                             )
                                         })}
@@ -41,7 +41,7 @@ export default function SessionsPage({ idFilme, setIdSessao }) {
 
             </div>
 
-            <FooterContainer>
+            <FooterContainer data-test="footer">
                 <div>
                     {movie === null ? "carregando" : <img src={movie.posterURL} alt="poster" />}
                 </div>
