@@ -1,15 +1,17 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-export default function Seat({ seat }) {
+export default function Seat({ seat, order }) {
     const [selected, setSelected] = useState(false);
 
     return (
         <SeatItem
-            key={seat.id} isAvailable={seat.isAvailable} selected={selected}
+            isAvailable={seat.isAvailable} selected={selected}
             onClick={() => {
                 if (seat.isAvailable) {
                     setSelected(!selected);
+                    const index = order.ids.indexOf(seat.id);
+                    selected ? order.ids.splice(index, 1) : order.ids.push(seat.id);
                 } else {
                     alert("Esse assento não está disponível");
                 }

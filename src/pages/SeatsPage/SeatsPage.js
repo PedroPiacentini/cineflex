@@ -6,6 +6,12 @@ import { Link } from "react-router-dom";
 
 export default function SeatsPage({ idSessao }) {
     const [session, setSession] = useState(null);
+    const order = {
+        ids: [],
+        name: "",
+        cpf: ""
+    };
+
     const movie = session !== null ? session.movie : null;
     const seats = session !== null ? session.seats : null;
 
@@ -23,7 +29,7 @@ export default function SeatsPage({ idSessao }) {
 
             <SeatsContainer>
                 {session === null ? <div>carregando</div> :
-                    seats.map(seat => <Seat seat={seat} />)
+                    seats.map(seat => <Seat key={seat.id} seat={seat} order={order} />)
                 }
             </SeatsContainer>
 
@@ -44,12 +50,24 @@ export default function SeatsPage({ idSessao }) {
 
             <FormContainer>
                 Nome do Comprador:
-                <input placeholder="Digite seu nome..." />
+                <input placeholder="Digite seu nome..." onChange={name => order.name = name.target.value} />
 
                 CPF do Comprador:
-                <input placeholder="Digite seu CPF..." />
+                <input placeholder="Digite seu CPF..." onChange={cpf => order.cpf = cpf.target.value} />
 
-                <button>Reservar Assento(s)</button>
+                <Link to={"/sucesso"}>
+                    <button
+                        onClick={() => {
+                            if (order.ids.length === 0) return;
+                            const request = axios.post(`https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many`, order);
+
+                            request.then(response => {
+                                console.log(response);
+                            })
+                        }}
+                    >Reservar Assento(s)</button>
+                </Link>
+
             </FormContainer>
 
             <FooterContainer>
