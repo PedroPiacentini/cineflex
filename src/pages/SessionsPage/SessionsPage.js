@@ -29,7 +29,7 @@ export default function SessionsPage({ idFilme, setIdSessao }) {
                                     <ButtonsContainer>
                                         {day.showtimes.map(button => {
                                             return (
-                                                <Link key={button.id} to={`/assentos/:${button.id}`}>
+                                                <Link key={button.id} to={`/assentos/${button.id}`}>
                                                     <button data-test="showtime" onClick={() => setIdSessao(button.id)} >{button.name}</button>
                                                 </Link>
                                             )

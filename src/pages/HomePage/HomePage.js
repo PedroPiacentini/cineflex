@@ -27,7 +27,7 @@ export default function HomePage({ setIdFilme }) {
                             const idFilme = movie.id;
 
                             return (
-                                <Link key={idFilme} to={`/sessoes/:${idFilme}`}>
+                                <Link key={idFilme} to={`/sessoes/${idFilme}`}>
                                     <MovieContainer data-test="movie" onClick={() => { setIdFilme(idFilme) }}>
                                         <img src={image} alt="poster" />
                                     </MovieContainer>
