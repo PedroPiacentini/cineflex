@@ -22,8 +22,8 @@ export default function App() {
             <Link to="/" />
             <Routes>
                 <Route path="/" element={<HomePage setIdFilme={setIdFilme} />} />
-                <Route path={`/sessoes/:${idFilme}`} element={<SessionsPage idFilme={idFilme} setIdSessao={setIdSessao} />} />
-                <Route path={`/assentos/:${idSessao}`} element={<SeatsPage idSessao={idSessao} setOrder={setOrder} />} />
+                <Route path={`/sessoes/${idFilme}`} element={<SessionsPage idFilme={idFilme} setIdSessao={setIdSessao} />} />
+                <Route path={`/assentos/${idSessao}`} element={<SeatsPage idSessao={idSessao} setOrder={setOrder} />} />
                 <Route path="/sucesso" element={<SuccessPage idSessao={idSessao} order={order} />} />
             </Routes>
         </BrowserRouter>
