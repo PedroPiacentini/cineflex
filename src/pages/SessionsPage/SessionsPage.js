@@ -4,6 +4,7 @@ import axios from "axios";
 
 export default function SessionsPage({ idFilme }) {
     const [movie, setMovie] = useState(null);
+    const days = movie === null ? null : movie.days;
 
     useEffect(() => {
         const request = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`);
@@ -16,38 +17,33 @@ export default function SessionsPage({ idFilme }) {
     return (
         <PageContainer>
             Selecione o horário
+
             <div>
-                <SessionContainer>
-                    Sexta - 03/03/2023
-                    <ButtonsContainer>
-                        <button>14:00</button>
-                        <button>15:00</button>
-                    </ButtonsContainer>
-                </SessionContainer>
+                {
+                    movie === null ? <div>carregando</div> :
+                        days.map(day => {
+                            return (
+                                <SessionContainer>
+                                    {day.weekday} - {day.date}
+                                    <ButtonsContainer>
+                                        {day.showtimes.map(button => {
+                                            return (
+                                                <button>{button.name}</button>
+                                            )
+                                        })}
+                                    </ButtonsContainer>
+                                </SessionContainer>
+                            )
+                        })}
 
-                <SessionContainer>
-                    Sexta - 03/03/2023
-                    <ButtonsContainer>
-                        <button>14:00</button>
-                        <button>15:00</button>
-                    </ButtonsContainer>
-                </SessionContainer>
-
-                <SessionContainer>
-                    Sexta - 03/03/2023
-                    <ButtonsContainer>
-                        <button>14:00</button>
-                        <button>15:00</button>
-                    </ButtonsContainer>
-                </SessionContainer>
             </div>
 
             <FooterContainer>
                 <div>
-                    <img src={"https://br.web.img2.acsta.net/pictures/22/05/16/17/59/5165498.jpg"} alt="poster" />
+                    {movie === null ? "carregando" : <img src={movie.posterURL} alt="poster" />}
                 </div>
                 <div>
-                    <p>Tudo em todo lugar ao mesmo tempo</p>
+                    <p>{movie === null ? "carregando" : movie.title}</p>
                 </div>
             </FooterContainer>
 
