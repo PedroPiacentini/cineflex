@@ -4,7 +4,7 @@ import axios from "axios";
 import Seat from "../../components/Seat";
 import { Link } from "react-router-dom";
 
-export default function SeatsPage({ idSessao }) {
+export default function SeatsPage({ idSessao, setOrder }) {
     const [session, setSession] = useState(null);
     const order = {
         ids: [],
@@ -55,12 +55,12 @@ export default function SeatsPage({ idSessao }) {
                 CPF do Comprador:
                 <input placeholder="Digite seu CPF..." onChange={cpf => order.cpf = cpf.target.value} />
 
-                <Link to={"/sucesso"}>
+                <Link to={"/sucesso"} >
                     <button
                         onClick={() => {
                             if (order.ids.length === 0) return;
                             const request = axios.post(`https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many`, order);
-
+                            setOrder(order);
                             request.then(response => {
                                 console.log(response);
                             })

@@ -10,6 +10,11 @@ export default function App() {
 
     const [idFilme, setIdFilme] = useState(null);
     const [idSessao, setIdSessao] = useState(null);
+    const [order, setOrder] = useState({
+        ids: [],
+        name: "",
+        cpf: ""
+    });
 
     return (
         <BrowserRouter>
@@ -18,8 +23,8 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<HomePage setIdFilme={setIdFilme} />} />
                 <Route path={`/sessoes/:${idFilme}`} element={<SessionsPage idFilme={idFilme} setIdSessao={setIdSessao} />} />
-                <Route path={`/assentos/:${idSessao}`} element={<SeatsPage idSessao={idSessao} />} />
-                <Route path="/sucesso" element={<SuccessPage />} />
+                <Route path={`/assentos/:${idSessao}`} element={<SeatsPage idSessao={idSessao} setOrder={setOrder} />} />
+                <Route path="/sucesso" element={<SuccessPage idSessao={idSessao} order={order} />} />
             </Routes>
         </BrowserRouter>
     )
