@@ -58,7 +58,6 @@ export default function SeatsPage({ idSessao, setOrder }) {
                 <Link to={"/sucesso"} >
                     <button data-test="book-seat-btn"
                         onClick={() => {
-                            if (order.ids.length === 0) return;
                             const request = axios.post(`https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many`, order);
                             setOrder(order);
                             request.then(response => {
